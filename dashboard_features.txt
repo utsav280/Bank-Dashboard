@@ -1,0 +1,127 @@
+================================================================================
+          FINTRUST INSTITUTIONAL BANKING DASHBOARD - FEATURE MATRIX
+================================================================================
+
+This document details every feature, interaction, and capability built into the
+FinTrust Banking Dashboard. Use this as a comprehensive guide for walkthroughs,
+user testing, and presentation purposes.
+
+--------------------------------------------------------------------------------
+1. GLOBAL INFRASTRUCTURE & ARCHITECTURE
+--------------------------------------------------------------------------------
+* ENTERPRISE DOCKING NAVIGATION SYSTEM:
+  - Desktop View: A responsive Sidebar layout that dynamically updates and 
+    highlights the active page.
+  - Mobile/Tablet View: Automatically switches to a bottom-docked navigation bar
+    saving screen estate and providing a native app experience.
+* COMPLETE DARK/LIGHT MODE PARITY:
+  - Visual consistency across all screens utilizing dynamic MUI theme tokens.
+  - Interactive custom switches that instantly toggle themes with zero page refresh.
+* HIGH-PERFORMANCE ENGINE (LIGHTHOUSE 95+ APPROVED):
+  - Async Web-Font Loading: Asynchronous non-render-blocking font loaders.
+  - Resource Preconnection: Faster server connections via <link rel="preconnect"> tags.
+  - Manual Bundle Chunking: Splitted vendor files (MUI, Recharts, Framer Motion, 
+    React-DOM) into distinct browser-cacheable chunks.
+  - Critical Path Code Splitting: Sidebar and Bottom Nav are lazy-loaded on the fly.
+  - Low-Latency Simulation: Skeleton loaders are highly tuned (~150-200ms) to ensure 
+    lightning-fast First Contentful Paint (FCP).
+
+--------------------------------------------------------------------------------
+2. DASHBOARD OVERVIEW PAGE
+--------------------------------------------------------------------------------
+* DYNAMIC INSTITUTIONAL LIQUIDITY CARDS:
+  - Large stat blocks displaying: "Total Balance", "Monthly Inflow", "Monthly Outflow", 
+    and "Active Holds".
+  - Feature custom trend badges with color indicators representing positive growth 
+    or outflow rates.
+* LIVE CAPITAL FLOW SIMULATION:
+  - Triggers a real-time background balance fluctuation every 30 seconds, 
+    automatically updating totals with beautiful fade-in metrics.
+* INTERACTIVE OVERVIEW CHARTS:
+  - A highly styled zoomable and pannable Recharts Area Chart displaying capital curves.
+  - Custom micro-animations on load.
+* ASSET ALLOCATION DONUT WIDGET:
+  - Repositioned dynamic tooltip (fixed at coordinates x: 120, y: -20) to ensure the 
+    central percentage figure in the middle of the donut is never covered during hover.
+* CURRENCY & COMMODITY MATRIX:
+  - Real-time tracker for major international currencies (USD/INR, EUR/INR, GBP/INR)
+    and commodities (Gold, Silver) with live trend chips (UP / DOWN / STABLE).
+* QUICK HISTORY LEDGER:
+  - Compact feed highlighting the latest three institutional movements.
+  - Styled with semantic category avatars, custom badge indicators, and hover details.
+
+--------------------------------------------------------------------------------
+3. TRANSACTION AUDITING CENTRE (TRANSACTIONS PAGE)
+--------------------------------------------------------------------------------
+* SYSTEM-WIDE TIMEZONE-SAFE DATE FORMATTER:
+  - Automatically parses legacy and ISO date strings, formatting them everywhere 
+    into a user-friendly, clean "DD-MMM-YYYY" structure (e.g., "16-May-2026").
+* LEDGER METRIC CARDS:
+  - Real-time widgets updating total volume, pending settlements, and flagged alerts 
+    based on the current filtered transaction list.
+* MULTI-COLUMN TRANSACTION TABLE:
+  - Displays fully formatted Transaction Date, Description (including Reference ID), 
+    Category Chip, Amount (color-coded by type), and Status chip.
+* CATEGORY-SORTING SYSTEM:
+  - Clickable "Category" column header that toggles records alphabetically (A-Z / Z-A) 
+    with real-time ↑↓ sort arrow indicator.
+  - Full sorting capability also wired across Date, Description, Amount, and Status.
+* GLOBAL SEARCH SYSTEM:
+  - Filters all 1,000+ mock transactions instantly based on description matches, 
+    reference numbers, and counterparty records.
+* ADVANCED QUERY FILTERS DRAWER:
+  - Features dynamic sliding animation to reveal advanced parameters.
+  - Allows date-boundary queries ("From" and "To" date range selectors).
+  - Filters by Transaction Type (Credit vs. Debit) and Status (Completed, Pending, etc.).
+* INSTANT EXPORT TO CSV ENGINE:
+  - Generates and downloads a clean, compile-ready CSV of all currently filtered 
+    records with formatted DD-MMM-YYYY dates in one click.
+
+--------------------------------------------------------------------------------
+4. SECURE WIRE PAYMENTS (PAYMENTS PAGE)
+--------------------------------------------------------------------------------
+* INSTITUTIONAL WIRE FORM:
+  - Input fields for Account Source selection, Recipient Name, Recipient Account 
+    Number, Swift Code, Wire Amount, and Schedule Date.
+* CENTRALIZED FORM VALIDATION UTILITY:
+  - Inline real-time feedback with premium alerts that prevent blank inputs, 
+    incorrect character lengths (like SWIFT code constraints), or invalid amounts.
+* DYNAMIC PAYEE SHORTCUT CARDS:
+  - One-click shortcuts for frequent counterparties. Clicking any payee card 
+    instantly pre-fills the form with their details automatically.
+* SECURITY & CAP LIMIT CARD:
+  - Direct details detailing wire rules, daily institutional limits, and processing windows.
+
+--------------------------------------------------------------------------------
+5. ANALYTICS INTEL CARD (ANALYTICS PAGE)
+--------------------------------------------------------------------------------
+* HIGH-PERFORMANCE SPARKLINE CARDS:
+  - High-end statistics cards (Liquidity, Net Revenue, Capital Outflow, Yield) with 
+    embedded mini-sparkline trend graphs.
+* LIQUID VS. FIXED INCOME DUAL BAR CHART:
+  - Massive interactive dual-bar chart showing dynamic balance trends.
+  - Built-in zooming, panning, and modern hover informational tooltips.
+* PORTFOLIO ASSET DONUT:
+  - Specialized asset split chart.
+  - Repositioned hover tooltips to render statically in the top-left corner 
+    (x: 10, y: 10) to prevent obscuring the central breakdown metrics.
+* SYSTEM RECONCILIATION AUDIT LOG:
+  - Live feed detailing rebalanced funds, security updates, and administrative logs
+    complete with custom icons and relative timeframes (e.g., "3 hours ago").
+
+--------------------------------------------------------------------------------
+6. ACCOUNT SETTINGS & CONTROLS (SETTINGS PAGE)
+--------------------------------------------------------------------------------
+* PERSONAL INFORMATION PROFILE:
+  - Supports updating Name, Email, Phone, and Job Title.
+  - Interactive profile avatar supporting custom image uploads (Base64 conversion) 
+    or automatically falling back to name initials.
+* PASSWORD CONTROLS:
+  - Fully integrated secure modal to update passwords.
+* NOTIFICATION MANAGER switches:
+  - Visual switches managing Email, institutional logs, API access, and security notifications.
+* THEME MODE TOGGLE CARD:
+  - Quick access toggling system.
+* SECURE DANGER ZONE:
+  - Special visual card designed for administrative account removal requests.
+================================================================================
