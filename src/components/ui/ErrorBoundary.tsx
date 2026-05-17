@@ -22,8 +22,44 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
+  public componentDidMount() {
+    // If the app loads successfully, clear any previous reload attempt flags
+    try {
+      sessionStorage.removeItem('fintrust_chunk_reload_attempt');
+    } catch (e) {
+      console.error('Failed to clear sessionStorage:', e);
+    }
+  }
+
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Uncaught error:', error, errorInfo);
+    console.error('Uncaught error caught by ErrorBoundary:', error, errorInfo);
+
+    // Detect Vite dynamic import/chunk mismatch errors
+    const errorMessage = error?.message || '';
+    const errorName = error?.name || '';
+    
+    const isChunkError = 
+      errorMessage.includes('Failed to fetch dynamically imported module') ||
+      errorMessage.includes('loading chunk') ||
+      errorMessage.includes('dynamic import') ||
+      errorName === 'ChunkLoadError' ||
+      (errorMessage.includes('Failed to fetch') && errorMessage.includes('assets/'));
+
+    if (isChunkError) {
+      try {
+        const reloadKey = 'fintrust_chunk_reload_attempt';
+        const hasAttempted = sessionStorage.getItem(reloadKey);
+        
+        if (!hasAttempted) {
+          sessionStorage.setItem(reloadKey, 'true');
+          console.warn('Vite dynamic import/chunk mismatch error detected. Forcing page reload to sync assets...');
+          window.location.reload();
+          return;
+        }
+      } catch (e) {
+        console.error('Failed to handle auto-reload flag:', e);
+      }
+    }
   }
 
   public render() {
@@ -62,7 +98,12 @@ export class ErrorBoundary extends Component<Props, State> {
                 variant="contained" 
                 size="large" 
                 fullWidth 
-                onClick={() => window.location.reload()} 
+                onClick={() => {
+                  try {
+                    sessionStorage.removeItem('fintrust_chunk_reload_attempt');
+                  } catch (e) {}
+                  window.location.reload();
+                }} 
                 aria-label="Reload dashboard to recover from error"
                 sx={{ py: 1.5 }}
               >
