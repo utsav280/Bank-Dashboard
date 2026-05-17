@@ -81,7 +81,8 @@ const AssetAllocationDonut: React.FC = () => {
               zIndex: 1,
               pointerEvents: 'none'
             }}>
-              <Typography sx={{ fontSize: '0.8rem', fontWeight: 700, color: 'text.primary' }}>Total</Typography>
+              <Typography sx={{ fontSize: '0.95rem', fontWeight: 800, color: 'text.primary', lineHeight: 1 }}>65%</Typography>
+              <Typography sx={{ fontSize: '0.55rem', fontWeight: 700, color: 'text.secondary', mt: 0.25 }}>Equities</Typography>
             </Box>
           </Box>
           <Stack spacing={1.5} sx={{ flex: 1 }}>

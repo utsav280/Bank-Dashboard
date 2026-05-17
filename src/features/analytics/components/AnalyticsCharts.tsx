@@ -205,6 +205,7 @@ const PortfolioTooltip = ({ active, payload }: any) => {
 
 export const DonutChart = memo(({ data }: { data: any[] }) => {
   const theme = useTheme();
+  const primary = data && data.length > 0 ? data[0] : { value: 100, name: 'Total Portfolio' };
 
   return (
     <Box sx={{ position: 'relative', my: 2 }}>
@@ -217,7 +218,7 @@ export const DonutChart = memo(({ data }: { data: any[] }) => {
           <ReTooltip 
             content={<PortfolioTooltip />} 
             wrapperStyle={{ zIndex: 1000 }} 
-            position={{ x: 10, y: 10 }}
+            position={{ x: 150, y: 0 }}
           />
         </PieChart>
       </ResponsiveContainer>
@@ -230,8 +231,8 @@ export const DonutChart = memo(({ data }: { data: any[] }) => {
         zIndex: 1,
         pointerEvents: 'none'
       }}>
-        <Typography variant="h5" fontWeight={800} color="text.primary">100%</Typography>
-        <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: 0.5, fontWeight: 700, mt: 0.25 }}>Total Portfolio</Typography>
+        <Typography variant="h6" fontWeight={800} color="text.primary">{primary.value}%</Typography>
+        <Typography variant="caption" color="text.secondary" display="block" sx={{ fontSize: '0.55rem', letterSpacing: 0.5, fontWeight: 700, mt: 0.25 }}>{primary.name}</Typography>
       </Box>
     </Box>
   );

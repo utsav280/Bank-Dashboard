@@ -23,7 +23,7 @@ export interface Transaction {
   counterparty: string;
 }
 
-const descriptions = [
+const descriptions: [string, TxCategory, TxType, TxStatus][] = [
   ['Capital One Equity Disbursement', 'Equities', 'debit', 'Flagged'],
   ['Yield Management Deposit', 'Treasury', 'credit', 'Completed'],
   ['SWIFT Inward: Deutsche Bank', 'Operational', 'credit', 'Processing'],
@@ -44,6 +44,16 @@ const descriptions = [
   ['SWIFT Outward: Barclays London', 'Operational', 'debit', 'Completed'],
   ['Mutual Fund SIP – ICICI Pru', 'Equities', 'debit', 'Completed'],
   ['Fixed Deposit Maturity Credit', 'Treasury', 'credit', 'Completed'],
+  ['Kotak Securities Brokerage', 'Equities', 'debit', 'Completed'],
+  ['SBI Mutual Fund Redemption', 'Treasury', 'credit', 'Completed'],
+  ['Reliance Industries Dividend', 'Equities', 'credit', 'Completed'],
+  ['Office Utilities Payment', 'Operational', 'debit', 'Completed'],
+  ['Annual Insurance Premium', 'Compliance', 'debit', 'Pending'],
+  ['Infosys Ltd Stock Purchase', 'Equities', 'debit', 'Processing'],
+  ['NTPC Bond Coupon', 'Treasury', 'credit', 'Completed'],
+  ['L&T Finance EMI', 'Infrastructure', 'debit', 'Completed'],
+  ['Axis Bank FD Interest', 'Treasury', 'credit', 'Completed'],
+  ['Tata Consultancy Services Payout', 'Payroll', 'debit', 'Completed'],
 ];
 
 const counterparties = [
@@ -70,8 +80,25 @@ function dateOffset(daysAgo: number): string {
 const statuses: TxStatus[] = ['Completed', 'Pending', 'Failed', 'Processing'];
 const accounts = ['acc1', 'acc2', 'acc3'];
 
+// Seeded shuffle: use a deterministic but diverse ordering of description indices
+// so the first page shows a rich mix of transaction types
+function buildShuffledIndices(count: number, poolSize: number): number[] {
+  const indices: number[] = [];
+  // Prime-step iteration ensures no back-to-back repeats from the same index
+  const step = 7; // co-prime with 30
+  let cursor = 0;
+  for (let i = 0; i < count; i++) {
+    indices.push(cursor % poolSize);
+    cursor += step;
+  }
+  return indices;
+}
+
+const shuffledDescIdx = buildShuffledIndices(1000, descriptions.length);
+
 export const MOCK_TRANSACTIONS: Transaction[] = Array.from({ length: 1000 }, (_, i) => {
-  const base = descriptions[i % descriptions.length];
+  const descIdx = shuffledDescIdx[i];
+  const base = descriptions[descIdx];
   const isOverride = i % 17 === 0;
   const status: TxStatus = isOverride
     ? 'Flagged'
@@ -85,13 +112,13 @@ export const MOCK_TRANSACTIONS: Transaction[] = Array.from({ length: 1000 }, (_,
   return {
     id: `tx-${i + 1}`,
     date: dateOffset(i % 180),
-    description: base[0] as string,
+    description: base[0],
     reference: genRef(),
-    category: base[1] as TxCategory,
+    category: base[1],
     amount,
-    type: base[2] as TxType,
+    type: base[2],
     status,
     accountId: accounts[i % 3],
-    counterparty: counterparties[i % counterparties.length],
+    counterparty: counterparties[(i + descIdx) % counterparties.length],
   };
 });

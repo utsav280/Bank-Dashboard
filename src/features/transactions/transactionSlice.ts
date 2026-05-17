@@ -22,12 +22,16 @@ interface TransactionState {
   isLoading: boolean;
 }
 
+const today = new Date();
+const thirtyDaysAgo = new Date();
+thirtyDaysAgo.setDate(today.getDate() - 30);
+
 const initialState: TransactionState = {
   all: MOCK_TRANSACTIONS,
   filters: {
     search: '',
-    dateFrom: '',
-    dateTo: '',
+    dateFrom: thirtyDaysAgo.toISOString().split('T')[0],
+    dateTo: today.toISOString().split('T')[0],
     type: 'all',
     category: 'all',
     status: 'all',

@@ -4,7 +4,7 @@ import { useCurrencyFormat } from '../../../hooks/useCurrencyFormat';
 import { MOCK_TRANSACTIONS } from '../../../mock/transactions';
 
 const TransactionSummaryCards: React.FC = () => {
-  const { formatCurrency } = useCurrencyFormat();
+  const { formatCurrency, formatCompact } = useCurrencyFormat();
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
 
@@ -13,8 +13,8 @@ const TransactionSummaryCards: React.FC = () => {
   const totalVolume = useMemo(() => MOCK_TRANSACTIONS.reduce((s, t) => s + t.amount, 0), []);
 
   const cards = [
-    { label: `Total Volume (${MOCK_TRANSACTIONS.length})`, value: formatCurrency(totalVolume), sub: '+2.4% vs last mo.', color: 'text.primary' },
-    { label: `Pending Settlement`, value: formatCurrency(MOCK_TRANSACTIONS.filter((t) => t.status === 'Pending').reduce((s, t) => s + t.amount, 0)), sub: `${pendingCount} Active Holds`, color: 'text.primary' },
+    { label: `Total Volume (${MOCK_TRANSACTIONS.length})`, value: formatCompact(totalVolume), sub: '+2.4% vs last mo.', color: 'text.primary' },
+    { label: `Pending Settlement`, value: formatCompact(MOCK_TRANSACTIONS.filter((t) => t.status === 'Pending').reduce((s, t) => s + t.amount, 0)), sub: `${pendingCount} Active Holds`, color: 'text.primary' },
     { label: 'Flagged Transactions', value: String(flaggedCount).padStart(2, '0'), sub: 'Requires Attention', color: 'error.main', isError: true },
   ];
 

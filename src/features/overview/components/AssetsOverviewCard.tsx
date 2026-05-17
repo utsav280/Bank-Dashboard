@@ -100,8 +100,8 @@ const AssetsOverviewCard: React.FC = () => {
           </ResponsiveContainer>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 0.5 }}>
-          <Typography variant="caption" color="text.disabled" fontWeight={600}>Sep 2023</Typography>
-          <Typography variant="caption" color="text.disabled" fontWeight={600}>Jun 2024</Typography>
+          <Typography variant="caption" color="text.disabled" fontWeight={600}>Jun 2025</Typography>
+          <Typography variant="caption" color="text.disabled" fontWeight={600}>Apr 2026</Typography>
         </Box>
       </CardContent>
     </Card>

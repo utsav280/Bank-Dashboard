@@ -41,9 +41,9 @@ const AnalyticsPage: React.FC = () => {
     if (timeRange === '30days') {
       return {
         stats: [
-          { label: 'Total Liquidity', value: '$42,892,150.00', change: '+1.2%', up: true, color: TERTIARY, spark: [1, 2, 3, 4, 3, 5] },
-          { label: 'Net Revenue', value: '$812,400.00', change: '-0.4%', up: false, color: ERROR, spark: [5, 4, 3, 4, 2, 1] },
-          { label: 'Capital Outflow', value: '$345,200.00', change: '-2.5%', up: false, color: ERROR, spark: [2, 3, 4, 3, 2, 1] },
+          { label: 'Total Liquidity', value: '₹4,28,92,150.00', change: '+1.2%', up: true, color: TERTIARY, spark: [1, 2, 3, 4, 3, 5] },
+          { label: 'Net Revenue', value: '₹8,12,400.00', change: '-0.4%', up: false, color: ERROR, spark: [5, 4, 3, 4, 2, 1] },
+          { label: 'Capital Outflow', value: '₹3,45,200.00', change: '-2.5%', up: false, color: ERROR, spark: [2, 3, 4, 3, 2, 1] },
           { label: 'Yield Projection', value: '5.24%', change: '+0.1%', up: true, color: TERTIARY, spark: [1, 2, 3, 4, 4, 5] },
         ],
         donut: [
@@ -54,7 +54,7 @@ const AnalyticsPage: React.FC = () => {
         logs: [
           { id: '1', type: 'success', title: 'Daily Reconciliation', description: 'Domestic clearing synced.', time: '2 MINS AGO', bg: alpha(TERTIARY, 0.1) },
           { id: '2', type: 'warning', title: 'Minor Alert', description: 'Unusual pattern in Sector 2.', time: '1 HOUR AGO', bg: alpha(ERROR, 0.1) },
-          { id: '3', type: 'info', title: 'Transfer Pending', description: '$120K outbound.', time: '3 HOURS AGO', bg: alpha('#94a3b8', 0.1) },
+          { id: '3', type: 'info', title: 'Transfer Pending', description: '₹12L outbound.', time: '3 HOURS AGO', bg: alpha('#94a3b8', 0.1) },
         ],
         balanceTrend: [
           { month: 'Day 1', liquidAssets: 20000000, fixedIncome: 15000000 },
@@ -82,9 +82,9 @@ const AnalyticsPage: React.FC = () => {
     if (timeRange === '90days') {
       return {
         stats: [
-          { label: 'Total Liquidity', value: '$45,102,500.00', change: '+3.8%', up: true, color: TERTIARY, spark: [1, 2, 4, 5, 6, 8] },
-          { label: 'Net Revenue', value: '$2,510,000.00', change: '+1.5%', up: true, color: TERTIARY, spark: [2, 3, 2, 4, 5, 6] },
-          { label: 'Capital Outflow', value: '$1,150,000.00', change: '-4.2%', up: false, color: ERROR, spark: [6, 5, 4, 5, 3, 2] },
+          { label: 'Total Liquidity', value: '₹4,51,02,500.00', change: '+3.8%', up: true, color: TERTIARY, spark: [1, 2, 4, 5, 6, 8] },
+          { label: 'Net Revenue', value: '₹25,10,000.00', change: '+1.5%', up: true, color: TERTIARY, spark: [2, 3, 2, 4, 5, 6] },
+          { label: 'Capital Outflow', value: '₹11,50,000.00', change: '-4.2%', up: false, color: ERROR, spark: [6, 5, 4, 5, 3, 2] },
           { label: 'Yield Projection', value: '5.41%', change: '+0.5%', up: true, color: TERTIARY, spark: [2, 3, 3, 4, 4, 5] },
         ],
         donut: [
@@ -95,7 +95,7 @@ const AnalyticsPage: React.FC = () => {
         logs: [
           { id: '1', type: 'success', title: 'Monthly Close', description: 'Books reconciled.', time: '1 DAY AGO', bg: alpha(TERTIARY, 0.1) },
           { id: '2', type: 'warning', title: 'Threshold Exceeded', description: 'Infrastructure spending high.', time: '3 DAYS AGO', bg: alpha(ERROR, 0.1) },
-          { id: '3', type: 'info', title: 'New Allocation', description: '$2M to Real Estate.', time: '1 WEEK AGO', bg: alpha('#94a3b8', 0.1) },
+          { id: '3', type: 'info', title: 'New Allocation', description: '₹2Cr to Real Estate.', time: '1 WEEK AGO', bg: alpha('#94a3b8', 0.1) },
         ],
         balanceTrend: [
           { month: 'Week 1', liquidAssets: 15000000, fixedIncome: 10000000 },
@@ -120,9 +120,9 @@ const AnalyticsPage: React.FC = () => {
     }
     return {
       stats: [
-        { label: 'Total Liquidity', value: '$52,192,000.00', change: '+14.2%', up: true, color: TERTIARY, spark: [1, 3, 5, 6, 8, 12] },
-        { label: 'Net Revenue', value: '$18,122,400.00', change: '+8.9%', up: true, color: TERTIARY, spark: [2, 4, 4, 6, 8, 10] },
-        { label: 'Capital Outflow', value: '$8,450,200.00', change: '-1.5%', up: false, color: ERROR, spark: [8, 7, 8, 6, 5, 4] },
+        { label: 'Total Liquidity', value: '₹5,21,92,000.00', change: '+14.2%', up: true, color: TERTIARY, spark: [1, 3, 5, 6, 8, 12] },
+        { label: 'Net Revenue', value: '₹1,81,22,400.00', change: '+8.9%', up: true, color: TERTIARY, spark: [2, 4, 4, 6, 8, 10] },
+        { label: 'Capital Outflow', value: '₹84,50,200.00', change: '-1.5%', up: false, color: ERROR, spark: [8, 7, 8, 6, 5, 4] },
         { label: 'Yield Projection', value: '6.12%', change: '+1.4%', up: true, color: TERTIARY, spark: [3, 4, 4, 5, 5, 6] },
       ],
       donut: [

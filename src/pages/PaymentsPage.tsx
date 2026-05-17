@@ -15,6 +15,7 @@ import { useAppSelector } from '../app/hooks';
 import PaymentForm from '../features/payments/components/PaymentForm';
 import RecentPayeesCard from '../features/payments/components/RecentPayeesCard';
 import TransferInfoCard from '../features/payments/components/TransferInfoCard';
+import RecentTransfersCard from '../features/payments/components/RecentTransfersCard';
 
 const schema = z.object({
   fromAccount: z.string().min(1, 'Select a source account'),
@@ -129,6 +130,7 @@ const PaymentsPage: React.FC = () => {
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                 <TransferInfoCard />
                 <RecentPayeesCard onSelect={handleSelectPayee} />
+                <RecentTransfersCard />
               </Box>
             </Grid>
           </Grid>
